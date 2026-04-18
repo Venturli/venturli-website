@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Policy — Venturli</title>
+  <meta name="description" content="Venturli Cookie Policy — how we use cookies and similar technologies on our platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .legal-hero {
+      padding: 10rem 2.5rem 5rem;
+      background: var(--deep);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .legal-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(26,188,176,0.08) 0%, transparent 60%);
+    }
+    .legal-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .legal-hero-inner .section-label { margin-bottom: 0.75rem; }
+    .legal-hero-inner h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .legal-meta { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+
+    .legal-body { padding: 5rem 2.5rem 7rem; }
+    .legal-inner { max-width: 760px; margin: 0 auto; }
+
+    .legal-inner h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: -0.01em; margin: 3rem 0 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .legal-inner h2:first-child { margin-top: 0; }
+    .legal-inner p {
+      color: var(--text-soft); font-size: 0.95rem;
+      line-height: 1.85; font-weight: 300; margin-bottom: 1rem;
+    }
+    .legal-inner ul {
+      list-style: none; margin: 0.5rem 0 1.2rem; padding: 0;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .legal-inner ul li {
+      color: var(--text-soft); font-size: 0.95rem;
+      line-height: 1.75; font-weight: 300;
+      padding-left: 1.4rem; position: relative;
+    }
+    .legal-inner ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.6rem;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--teal);
+    }
+    .legal-inner a {
+      color: var(--orange); text-decoration: none; transition: opacity 0.2s;
+    }
+    .legal-inner a:hover { opacity: 0.8; }
+    .legal-inner .highlight-box {
+      background: rgba(26,188,176,0.06);
+      border: 1px solid rgba(26,188,176,0.15);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.8rem; margin: 1.5rem 0;
+    }
+    .legal-inner .highlight-box p { margin: 0; }
+
+    /* Cookie type table */
+    .cookie-table {
+      width: 100%; border-collapse: collapse;
+      margin: 1.2rem 0; font-size: 0.88rem;
+    }
+    .cookie-table th {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cookie-table td {
+      padding: 0.9rem 1rem; color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+      line-height: 1.6; font-weight: 300;
+      vertical-align: top;
+    }
+    .cookie-table tr:last-child td { border-bottom: none; }
+    .cookie-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .cookie-tag {
+      display: inline-block;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .cookie-tag.essential { background: rgba(26,188,176,0.12); color: var(--teal); }
+    .cookie-tag.functional { background: rgba(249,116,22,0.12); color: var(--orange); }
+    .cookie-tag.analytics { background: rgba(43,90,251,0.12); color: #6b8fff; }
+
+    @media (max-width: 768px) {
+      .legal-hero { padding: 8rem 1.25rem 4rem; }
+      .legal-body { padding: 3.5rem 1.25rem 5rem; }
+      .cookie-table th, .cookie-table td { padding: 0.65rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav" class="scrolled">
+  <a href="/" class="nav-logo">ventur<span>li</span></a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="https://app.venturli.ai" class="nav-cta">Open App</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="legal-hero">
+  <div class="legal-hero-inner">
+    <p class="section-label">Legal</p>
+    <h1>Cookie Policy</h1>
+    <p class="legal-meta">Last updated: April 18, 2026 &nbsp;·&nbsp; Effective: April 18, 2026</p>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="legal-body">
+  <div class="legal-inner">
+
+    <div class="highlight-box">
+      <p>We keep our cookie usage minimal and purposeful. This policy explains exactly what cookies Venturli uses, why we use them, and how you can control them.</p>
+    </div>
+
+    <h2>1. What Are Cookies?</h2>
+    <p>Cookies are small text files placed on your device when you visit a website. They help websites remember information about your visit — like whether you're logged in — so you don't have to re-enter it every time. Cookies can also include similar technologies like local storage and session storage.</p>
+    <p>Cookies are widely used and not inherently harmful. They do not contain executable code and cannot access other files on your device.</p>
+
+    <h2>2. How Venturli Uses Cookies</h2>
+    <p>Venturli uses a minimal set of cookies focused on making the platform work correctly. We do not use advertising cookies or sell cookie data to third parties.</p>
+
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Cookie</th>
+          <th>Type</th>
+          <th>Purpose</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>sb-auth-token</strong></td>
+          <td><span class="cookie-tag essential">Essential</span></td>
+          <td>Keeps you logged in to your Venturli account via Supabase authentication</td>
+          <td>Session / 1 week</td>
+        </tr>
+        <tr>
+          <td><strong>sb-refresh-token</strong></td>
+          <td><span class="cookie-tag essential">Essential</span></td>
+          <td>Refreshes your login session so you stay authenticated without logging in repeatedly</td>
+          <td>1 week</td>
+        </tr>
+        <tr>
+          <td><strong>theme-preference</strong></td>
+          <td><span class="cookie-tag functional">Functional</span></td>
+          <td>Remembers your light/dark mode preference across sessions</td>
+          <td>1 year</td>
+        </tr>
+        <tr>
+          <td><strong>stripe-mid</strong></td>
+          <td><span class="cookie-tag essential">Essential</span></td>
+          <td>Set by Stripe during payment processing for fraud prevention and security</td>
+          <td>1 year</td>
+        </tr>
+        <tr>
+          <td><strong>__vercel_live_token</strong></td>
+          <td><span class="cookie-tag functional">Functional</span></td>
+          <td>Set by Vercel for deployment preview functionality (only present in preview environments)</td>
+          <td>Session</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Types of Cookies We Use</h2>
+    <p><strong style="color:var(--teal)">Essential cookies</strong> are necessary for the platform to function. Without them you cannot log in, make bookings, or use core features. These cannot be disabled without breaking the platform.</p>
+    <p><strong style="color:var(--orange)">Functional cookies</strong> enhance your experience by remembering your preferences. They are not strictly required but improve usability. You can disable these through your browser settings.</p>
+    <p>We currently do not use <strong style="color:var(--text-muted)">analytics cookies</strong> or <strong style="color:var(--text-muted)">advertising cookies</strong>. If we introduce these in the future, we will update this policy and obtain your consent where required.</p>
+
+    <h2>4. Third-Party Cookies</h2>
+    <p>Some cookies on the Venturli platform are set by third-party services we use to deliver our product:</p>
+    <ul>
+      <li><strong style="color:var(--text)">Supabase</strong> — sets authentication cookies to manage your login session. See <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase's privacy policy</a>.</li>
+      <li><strong style="color:var(--text)">Stripe</strong> — sets cookies during payment flows for security and fraud prevention. See <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe's privacy policy</a>.</li>
+      <li><strong style="color:var(--text)">Vercel</strong> — may set cookies related to hosting and deployment infrastructure. See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Vercel's privacy policy</a>.</li>
+    </ul>
+    <p>We do not use Google Analytics, Facebook Pixel, or any other third-party tracking or advertising services at this time.</p>
+
+    <h2>5. Local Storage</h2>
+    <p>In addition to cookies, Venturli uses browser local storage to save certain app state on your device — such as your current trip view, UI preferences, and cached data. This information stays on your device and is not transmitted to our servers. You can clear it at any time by clearing your browser's site data.</p>
+
+    <h2>6. How to Control Cookies</h2>
+    <p>You can manage cookies through your browser settings. Most browsers allow you to:</p>
+    <ul>
+      <li>View what cookies are stored on your device</li>
+      <li>Delete individual cookies or all cookies</li>
+      <li>Block cookies from specific sites</li>
+      <li>Block all third-party cookies</li>
+      <li>Set preferences for future cookie use</li>
+    </ul>
+    <p>Instructions for managing cookies in common browsers:</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+      <li><a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
+      <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+    </ul>
+    <p>Note that disabling essential cookies will prevent you from logging in and using the Venturli platform.</p>
+
+    <h2>7. Do Not Track</h2>
+    <p>Some browsers offer a "Do Not Track" (DNT) signal. Because we do not engage in cross-site tracking, our platform responds the same way regardless of whether a DNT signal is present.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Cookie Policy as our use of cookies evolves. We will notify you of significant changes by posting the updated policy on this page with a revised effective date. For material changes, we may also notify you by email or through the app.</p>
+
+    <h2>9. Contact Us</h2>
+    <p>If you have questions about our use of cookies, please contact us:</p>
+    <ul>
+      <li>Email: <a href="mailto:privacy@venturli.ai">privacy@venturli.ai</a></li>
+      <li>Website: <a href="https://venturli.ai">venturli.ai</a></li>
+    </ul>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">ventur<span>li</span></a>
+        <p>AI-powered travel planning for the modern traveler.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="https://app.venturli.ai">Open App</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Venturli, Inc. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/cookie-policy.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>
