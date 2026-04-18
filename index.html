@@ -323,6 +323,10 @@
 </footer>
 
 <script>
+  // Supabase config
+  const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
+
   // Sticky nav
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -340,18 +344,64 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Email form
-  function handleSubmit() {
+  // Email form with Supabase insert
+  async function handleSubmit() {
     const input = document.getElementById('emailInput');
+    const btn = document.querySelector('.email-submit');
     const email = input.value.trim();
-    if (!email || !email.includes('@')) {
+
+    // Basic validation
+    if (!email || !email.includes('@') || !email.includes('.')) {
       input.style.borderColor = 'var(--coral)';
       setTimeout(() => input.style.borderColor = '', 1500);
       return;
     }
-    document.getElementById('emailForm').innerHTML =
-      '<p style="font-family:\'Syne\',sans-serif;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,#FAB321,#F97416,#F25E80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">You\'re on the list. See you out there. ✦</p>';
+
+    // Loading state
+    btn.textContent = 'Joining...';
+    btn.disabled = true;
+    input.disabled = true;
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok) {
+        // Success
+        document.getElementById('emailForm').innerHTML =
+          '<p style="font-family:\'Syne\',sans-serif;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,#FAB321,#F97416,#F25E80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">You\'re on the list. See you out there. ✦</p>';
+      } else {
+        const err = await res.json();
+        // Handle duplicate email gracefully
+        if (err.code === '23505') {
+          document.getElementById('emailForm').innerHTML =
+            '<p style="font-family:\'Syne\',sans-serif;font-size:1rem;color:var(--text-muted);">You\'re already on the list. We\'ll be in touch! ✦</p>';
+        } else {
+          throw new Error('Insert failed');
+        }
+      }
+    } catch (e) {
+      btn.textContent = 'Join Waitlist';
+      btn.disabled = false;
+      input.disabled = false;
+      input.style.borderColor = 'var(--coral)';
+      setTimeout(() => input.style.borderColor = '', 2000);
+      console.error('Waitlist error:', e);
+    }
   }
+
+  // Allow Enter key to submit
+  document.getElementById('emailInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSubmit();
+  });
 </script>
 </body>
 </html>
