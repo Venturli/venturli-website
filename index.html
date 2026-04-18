@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="dest-card">
-        <img src="https://images.unsplash.com/photo-1541480601022-2308c0f02487?w=600&q=75" alt="Hawaii" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1507876466758-0e07ad36b24a?w=600&q=75" alt="Hawaii" loading="lazy" />
         <div class="dest-overlay">
           <div>
             <div class="dest-name">Maui, Hawaii</div>
@@ -204,50 +204,51 @@
       <h2 class="section-title">Travel more, <span class="grad">pay less</span></h2>
       <p>No booking fees on top of your trip cost. Pay for what you actually use — nothing hidden.</p>
     </div>
+
+    <!-- Billing toggle -->
+    <div class="billing-toggle reveal">
+      <button class="billing-btn active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+      <button class="billing-btn" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $24</span></button>
+    </div>
+
     <div class="pricing-grid reveal">
+      <!-- Free -->
       <div class="price-card">
-        <p class="price-tier">Explorer</p>
+        <p class="price-tier">Free</p>
         <div class="price-amount"><span>$</span>0</div>
         <p class="price-cadence">Free forever</p>
         <ul class="price-features">
-          <li>AI trip planning with Compass</li>
-          <li>Flight & hotel search</li>
-          <li>1 active group trip</li>
-          <li>Basic itinerary builder</li>
-          <li>Passport stamp collection</li>
+          <li>1 solo trip</li>
+          <li>1 group trip (up to 5 members)</li>
+          <li>10 Compass AI messages/day</li>
+          <li>Basic packing suggestions</li>
+          <li>Standard booking search</li>
         </ul>
         <a href="https://app.venturli.ai" class="price-btn">Get Started Free</a>
       </div>
+
+      <!-- Pro -->
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
-        <p class="price-tier">Traveler</p>
-        <div class="price-amount"><span>$</span>9</div>
-        <p class="price-cadence">per month</p>
+        <p class="price-tier">Pro</p>
+        <div class="price-amount" id="pro-price"><span>$</span>6.99</div>
+        <p class="price-cadence" id="pro-cadence">per month</p>
         <ul class="price-features">
-          <li>Everything in Explorer</li>
+          <li>Unlimited solo trips</li>
           <li>Unlimited group trips</li>
-          <li>Cost splitting & settlement</li>
-          <li>Flight status tracking</li>
-          <li>Car rental booking</li>
-          <li>Trip journal & photos</li>
+          <li>Unlimited group members</li>
+          <li>Unlimited Compass AI messages</li>
+          <li>AI packing suggestions</li>
+          <li>SMS notifications</li>
+          <li>Flight status alerts</li>
+          <li>Early access to new features</li>
+          <li>Priority support</li>
         </ul>
-        <a href="https://app.venturli.ai" class="price-btn">Start Free Trial</a>
-      </div>
-      <div class="price-card">
-        <p class="price-tier">Crew</p>
-        <div class="price-amount"><span>$</span>19</div>
-        <p class="price-cadence">per month · up to 10 travelers</p>
-        <ul class="price-features">
-          <li>Everything in Traveler</li>
-          <li>Shared group workspace</li>
-          <li>Group voting & polls</li>
-          <li>Priority AI responses</li>
-          <li>Dedicated trip concierge</li>
-          <li>Export to PDF itinerary</li>
-        </ul>
-        <a href="https://app.venturli.ai" class="price-btn">Start Free Trial</a>
+        <a href="https://app.venturli.ai" class="price-btn">Get Started</a>
       </div>
     </div>
+
+    <p class="pricing-note">Secure payment via Stripe &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; No hidden fees</p>
   </div>
 </section>
 
@@ -323,6 +324,15 @@
 </footer>
 
 <script>
+  // Billing toggle
+  function setBilling(type) {
+    const isYearly = type === 'yearly';
+    document.getElementById('btn-monthly').classList.toggle('active', !isYearly);
+    document.getElementById('btn-yearly').classList.toggle('active', isYearly);
+    document.getElementById('pro-price').innerHTML = isYearly ? '<span>$</span>59.99' : '<span>$</span>6.99';
+    document.getElementById('pro-cadence').textContent = isYearly ? 'per year · billed annually' : 'per month';
+  }
+
   // Supabase config
   const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
