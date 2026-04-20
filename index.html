@@ -3,16 +3,327 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Venturli — Plan Together, Travel Better</title>
-  <meta name="description" content="The AI-powered travel platform that brings flights, hotels, rental cars, and group coordination into one seamless experience." />
+  <title>Venturli — AI-Powered Travel Planning</title>
+  <meta name="description" content="Plan trips, book flights and hotels, coordinate groups, and split costs — all in one intelligent travel app." />
   <meta property="og:title" content="Venturli — Plan Together, Travel Better" />
   <meta property="og:description" content="AI-powered travel planning for groups and solo travelers. Flights, hotels, cars, and splits — all in one place." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --navy: #0a0820;
+      --indigo: #1a1040;
+      --blue: #2B5AFB;
+      --purple: #9317FA;
+      --coral: #F97416;
+      --amber: #FAB321;
+      --cream: #FAF8F5;
+      --text: #1D1340;
+      --muted: #7060A0;
+      --card: #fff;
+      --soft: #F3F0FF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: #fff; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 5%;
+      transition: all 0.3s;
+    }
+    #nav.scrolled {
+      background: rgba(10,8,32,0.92);
+      backdrop-filter: blur(20px);
+      padding: 14px 5%;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+      color: #fff; text-decoration: none; letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue), var(--purple)) !important;
+      color: #fff !important; padding: 9px 20px; border-radius: 12px;
+      font-weight: 700 !important; font-size: 13px !important;
+    }
+    @media(max-width:600px) { .nav-links { gap: 16px; } .nav-links a:not(.nav-cta) { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 20px 80px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,32,0.7) 0%, rgba(10,8,32,0.5) 50%, rgba(10,8,32,0.95) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 780px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px); border-radius: 20px;
+      padding: 7px 16px; font-size: 12px; font-weight: 700;
+      color: rgba(255,255,255,0.85); margin-bottom: 24px; letter-spacing: 0.4px;
+    }
+    .hero-badge::before { content: '✦'; color: var(--amber); }
+    .hero-title {
+      font-family: 'Syne', sans-serif; font-size: clamp(42px, 7vw, 80px);
+      font-weight: 800; line-height: 1.05; margin-bottom: 20px; letter-spacing: -1.5px;
+    }
+    .grad {
+      background: linear-gradient(135deg, var(--amber), var(--coral), #F25E80);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px); color: rgba(255,255,255,0.7);
+      line-height: 1.6; max-width: 580px; margin: 0 auto 36px; font-weight: 400;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--coral), #F25E80);
+      color: #fff; padding: 15px 32px; border-radius: 16px;
+      font-weight: 800; font-size: 15px; text-decoration: none;
+      box-shadow: 0 8px 32px rgba(249,116,22,0.4); transition: all 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(249,116,22,0.5); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1); color: #fff;
+      border: 1px solid rgba(255,255,255,0.25); padding: 15px 28px;
+      border-radius: 16px; font-weight: 700; font-size: 15px;
+      text-decoration: none; backdrop-filter: blur(8px); transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* Hero stats */
+    .hero-stats {
+      position: relative; z-index: 2;
+      display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #fff; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; margin-top: 2px; }
+
+    /* ── TRUST ── */
+    .trust {
+      background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 5%; display: flex; align-items: center; gap: 24px;
+      overflow: hidden; flex-wrap: wrap; justify-content: center;
+    }
+    .trust-label { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+    .trust-logos { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .trust-logo {
+      font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.4);
+      padding: 5px 14px; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; white-space: nowrap;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 5%; }
+    .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 560px; }
+
+    /* ── FEATURES ── */
+    .features { background: rgba(255,255,255,0.02); }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .features-header { text-align: center; margin-bottom: 56px; }
+    .features-header .section-sub { margin: 0 auto; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 28px; transition: all 0.3s;
+    }
+    .feature-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+    .feature-icon { width: 52px; height: 52px; border-radius: 14px; background: rgba(43,90,251,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .feature-icon img { width: 28px; height: 28px; object-fit: contain; }
+    .feature-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    .how-inner { max-width: 860px; margin: 0 auto; }
+    .how-header { text-align: center; margin-bottom: 56px; }
+    .how-header .section-sub { margin: 0 auto; }
+    .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .steps::before { content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent); }
+    .step { display: flex; gap: 24px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+      width: 56px; height: 56px; border-radius: 16px; flexShrink: 0;
+      background: linear-gradient(135deg, rgba(43,90,251,0.2), rgba(147,23,250,0.2));
+      border: 1px solid rgba(43,90,251,0.3);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--blue);
+    }
+    .step-body { padding-top: 8px; }
+    .step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── DESTINATIONS ── */
+    .destinations { background: rgba(255,255,255,0.02); }
+    .dest-inner { max-width: 1100px; margin: 0 auto; }
+    .dest-header { text-align: center; margin-bottom: 40px; }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px; height: 520px;
+    }
+    .dest-card { position: relative; border-radius: 18px; overflow: hidden; cursor: pointer; }
+    .dest-card:first-child { grid-row: 1 / 3; }
+    .dest-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .dest-card:hover img { transform: scale(1.04); }
+    .dest-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      display: flex; align-items: flex-end; padding: 18px;
+    }
+    .dest-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: #fff; }
+    .dest-sub { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; font-weight: 500; }
+    @media(max-width:700px) { .dest-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; height: auto; } .dest-card:first-child { grid-row: auto; } .dest-card { height: 180px; } }
+
+    /* ── PRICING ── */
+    #pricing { background: rgba(255,255,255,0.02); }
+    .pricing-inner { max-width: 760px; margin: 0 auto; }
+    .pricing-header { text-align: center; margin-bottom: 36px; }
+    .pricing-header .section-sub { margin: 0 auto; }
+
+    .billing-toggle {
+      display: flex; background: rgba(255,255,255,0.07);
+      border-radius: 14px; padding: 4px; margin-bottom: 32px;
+      max-width: 380px; margin-left: auto; margin-right: auto;
+    }
+    .billing-btn {
+      flex: 1; border: none; border-radius: 10px; padding: 10px 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+      cursor: pointer; transition: all 0.18s;
+      background: transparent; color: rgba(255,255,255,0.45);
+    }
+    .billing-btn.active { background: var(--blue); color: #fff; }
+    .save-badge { background: rgba(250,179,33,0.2); color: var(--amber); padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 6px; }
+
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 16px; }
+    @media(max-width:580px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+    .price-card {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px; padding: 28px; position: relative;
+    }
+    .price-card.featured {
+      background: linear-gradient(135deg, rgba(43,90,251,0.15), rgba(147,23,250,0.1));
+      border-color: rgba(43,90,251,0.4);
+      box-shadow: 0 0 40px rgba(43,90,251,0.15);
+    }
+    .price-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--amber), var(--coral));
+      color: #fff; font-size: 11px; font-weight: 800;
+      padding: 4px 16px; border-radius: 20px; white-space: nowrap;
+    }
+    .price-tier { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    .price-amount { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .price-amount span { font-size: 22px; vertical-align: top; margin-top: 6px; display: inline-block; }
+    .price-cadence { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+    .price-trial { font-size: 12px; font-weight: 700; color: var(--amber); margin-bottom: 20px; }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; }
+    .price-features li { font-size: 13px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 9px; }
+    .price-features li::before { content: '✓'; color: var(--blue); font-weight: 900; font-size: 11px; flex-shrink: 0; }
+    .price-features li.dim { color: rgba(255,255,255,0.3); }
+    .price-features li.dim::before { content: '✕'; color: rgba(255,255,255,0.2); }
+    .price-btn {
+      display: block; width: 100%; padding: 13px;
+      border-radius: 14px; font-weight: 800; font-size: 14px;
+      text-align: center; text-decoration: none; transition: all 0.2s;
+    }
+    .price-btn-outline {
+      border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6);
+      background: transparent;
+    }
+    .price-btn-outline:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+    .price-btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: #fff; box-shadow: 0 8px 24px rgba(43,90,251,0.35);
+    }
+    .price-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(43,90,251,0.45); }
+    .pricing-note { text-align: center; font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 20px; }
+
+    /* ── EMAIL CAPTURE ── */
+    .capture { text-align: center; }
+    .capture-inner { max-width: 560px; margin: 0 auto; }
+    .capture-inner .section-sub { margin: 0 auto 32px; }
+    .email-form { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 12px; }
+    .email-input {
+      flex: 1; padding: 13px 16px; border-radius: 14px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 14px; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .email-input:focus { border-color: var(--blue); }
+    .email-input::placeholder { color: rgba(255,255,255,0.3); }
+    .email-submit {
+      padding: 13px 22px; border-radius: 14px; border: none;
+      background: linear-gradient(135deg, var(--coral), #F25E80);
+      color: #fff; font-weight: 800; font-size: 14px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .email-submit:hover { transform: translateY(-1px); }
+    .email-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-bottom: 32px; }
+    .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .badge {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px; padding: 10px 18px; text-decoration: none;
+      color: #fff; transition: all 0.2s;
+    }
+    .badge:hover { background: rgba(255,255,255,0.12); }
+    .badge-icon { font-size: 22px; }
+    .badge-text small { display: block; font-size: 10px; color: rgba(255,255,255,0.5); }
+    .badge-text strong { font-size: 14px; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer { padding: 60px 5% 32px; border-top: 1px solid rgba(255,255,255,0.07); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: flex; gap: 60px; margin-bottom: 48px; flex-wrap: wrap; }
+    .footer-brand { flex: 1; min-width: 200px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; margin-top: 12px; max-width: 280px; }
+    .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+    .footer-col { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.25); text-decoration: none; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media(max-width:480px) { .email-form { flex-direction: column; } section { padding: 60px 5%; } }
+  </style>
 </head>
 <body>
 
@@ -23,7 +334,7 @@
     <a href="#features">Features</a>
     <a href="#how">How It Works</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://app.venturli.ai" class="nav-cta">Open App</a>
+    <a href="https://app.venturli.ai" class="nav-cta">Open App →</a>
   </div>
 </nav>
 
@@ -31,7 +342,6 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay-warm"></div>
   <div class="hero-content">
     <div class="hero-badge">AI-Powered Travel Planning</div>
     <h1 class="hero-title">
@@ -41,25 +351,40 @@
       Flights, hotels, rental cars, and group coordination — all in one intelligent platform built for the way you actually travel.
     </p>
     <div class="hero-actions">
-      <a href="https://app.venturli.ai" class="btn-primary">Start Planning Free</a>
+      <a href="https://app.venturli.ai" class="btn-primary">Start Planning Free →</a>
       <a href="#how" class="btn-secondary">See How It Works</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Scroll
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">2M+</div>
+      <div class="stat-label">Hotels Available</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Booking Fees</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Compass AI</div>
+    </div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust">
-  <p class="trust-label">Booking powered by</p>
+  <p class="trust-label">Powered by</p>
   <div class="trust-logos">
-    <span class="trust-logo">Duffel Flights</span>
-    <span class="trust-logo">LiteAPI Hotels</span>
-    <span class="trust-logo">DiscoverCars</span>
-    <span class="trust-logo">Stripe Payments</span>
-    <span class="trust-logo">Supabase</span>
+    <span class="trust-logo">✈ Duffel Flights</span>
+    <span class="trust-logo">🏨 LiteAPI Hotels</span>
+    <span class="trust-logo">🚗 DiscoverCars</span>
+    <span class="trust-logo">💳 Stripe Payments</span>
+    <span class="trust-logo">📡 FlightAware</span>
+    <span class="trust-logo">🤖 Claude AI</span>
   </div>
 </div>
 
@@ -69,38 +394,38 @@
     <div class="features-header reveal">
       <p class="section-label">Everything You Need</p>
       <h2 class="section-title">One platform for the <span class="grad">entire journey</span></h2>
-      <p>Stop juggling a dozen tabs. Venturli brings your full trip — from the first search to the last receipt — into a single, beautifully organized experience.</p>
+      <p class="section-sub">Stop juggling a dozen tabs. Venturli brings your full trip — from the first search to the last receipt — into a single, beautifully organized experience.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-flights.png" alt="Flights" /></div>
         <h3 class="feature-name">Flight Search & Booking</h3>
-        <p class="feature-desc">Search real-time fares, compare routes, and book directly through our platform. Powered by Duffel for live inventory and instant confirmation.</p>
+        <p class="feature-desc">Search real-time fares, compare routes, and book directly. Powered by Duffel for live inventory and instant confirmation.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-hotels.png" alt="Hotels" /></div>
         <h3 class="feature-name">Hotels Worldwide</h3>
-        <p class="feature-desc">Over 2 million properties. Filter by price, rating, and amenities — then book without leaving the app. Powered by LiteAPI.</p>
+        <p class="feature-desc">Over 2 million properties. Filter by price, rating, and amenities — then book without leaving the app.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-cars.png" alt="Rental Cars" /></div>
         <h3 class="feature-name">Rental Cars</h3>
-        <p class="feature-desc">Compare car rental options at your destination with transparent pricing and no hidden fees. Book direct, pick up and go.</p>
+        <p class="feature-desc">Compare car rentals at your destination with transparent pricing and no hidden fees. Pick up and go.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-groups.png" alt="Group Trips" /></div>
         <h3 class="feature-name">Group Trip Coordination</h3>
-        <p class="feature-desc">Invite friends, share itineraries, vote on options, and coordinate plans in a shared space. Everyone stays on the same page.</p>
+        <p class="feature-desc">Invite friends, share itineraries, and coordinate plans in a shared space. Everyone stays on the same page.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-splits.png" alt="Cost Splitting" /></div>
         <h3 class="feature-name">Cost Splitting</h3>
-        <p class="feature-desc">Split trip costs automatically, track who's paid, and settle up via Venmo or Stripe. No awkward spreadsheets required.</p>
+        <p class="feature-desc">Split trip costs automatically, track who's paid, and settle up via Venmo or Stripe. No awkward spreadsheets.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-compass.png" alt="Compass AI" /></div>
         <h3 class="feature-name">Compass AI Assistant</h3>
-        <p class="feature-desc">Compass helps you discover destinations, build itineraries, and get real travel answers — not generic listicles.</p>
+        <p class="feature-desc">Your 24/7 travel companion. Ask anything about your destination — food, safety, visa rules, local events, or where to eat tonight.</p>
       </div>
     </div>
   </div>
@@ -112,28 +437,36 @@
     <div class="how-header reveal">
       <p class="section-label">How It Works</p>
       <h2 class="section-title">From <span class="grad">idea</span> to boarding pass</h2>
-      <p>Venturli follows the natural flow of trip planning — from dreaming to booking to traveling together.</p>
+      <p class="section-sub">Venturli follows the natural flow of trip planning — from dreaming to booking to traveling together.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
         <div class="step-num">01</div>
-        <h3 class="step-title">Tell Compass Where You Want to Go</h3>
-        <p class="step-desc">Start with a destination — or ask Compass to suggest one based on your budget, dates, and travel style.</p>
+        <div class="step-body">
+          <h3 class="step-title">Tell Compass Where You Want to Go</h3>
+          <p class="step-desc">Start with a destination — or ask Compass to suggest one based on your budget, dates, and travel style. AI builds the initial itinerary for you.</p>
+        </div>
       </div>
       <div class="step reveal">
         <div class="step-num">02</div>
-        <h3 class="step-title">Search & Book Everything in One Place</h3>
-        <p class="step-desc">Search live flights, browse hotels, and compare car rentals without switching apps. Book everything from a single checkout.</p>
+        <div class="step-body">
+          <h3 class="step-title">Search & Book Everything in One Place</h3>
+          <p class="step-desc">Search live flights, browse 2M+ hotels, and compare car rentals without switching apps. Book everything from a single checkout.</p>
+        </div>
       </div>
       <div class="step reveal">
         <div class="step-num">03</div>
-        <h3 class="step-title">Invite Your Group & Coordinate</h3>
-        <p class="step-desc">Pull friends into a shared trip workspace. Share the itinerary, coordinate arrivals, and split costs automatically.</p>
+        <div class="step-body">
+          <h3 class="step-title">Invite Your Group & Coordinate</h3>
+          <p class="step-desc">Pull friends into a shared trip workspace. Share the itinerary, split costs automatically, and chat in one place.</p>
+        </div>
       </div>
       <div class="step reveal">
         <div class="step-num">04</div>
-        <h3 class="step-title">Travel. Collect Stamps. Come Back.</h3>
-        <p class="step-desc">Track your trips in your passport, share photos, and build a journal of your adventures. Then plan the next one.</p>
+        <div class="step-body">
+          <h3 class="step-title">Travel With Confidence</h3>
+          <p class="step-desc">Get real-time flight alerts, offline trip access, and Compass standing by for anything that comes up on the road.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -149,48 +482,23 @@
     <div class="dest-grid reveal">
       <div class="dest-card">
         <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=75" alt="Maldives" loading="lazy" />
-        <div class="dest-overlay">
-          <div>
-            <div class="dest-name">Maldives</div>
-            <div class="dest-sub">Overwater Paradise · From $890</div>
-          </div>
-        </div>
+        <div class="dest-overlay"><div><div class="dest-name">Maldives</div><div class="dest-sub">Overwater Paradise · From $890</div></div></div>
       </div>
       <div class="dest-card">
         <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?w=600&q=75" alt="Bali" loading="lazy" />
-        <div class="dest-overlay">
-          <div>
-            <div class="dest-name">Bali, Indonesia</div>
-            <div class="dest-sub">From $380</div>
-          </div>
-        </div>
+        <div class="dest-overlay"><div><div class="dest-name">Bali, Indonesia</div><div class="dest-sub">From $380</div></div></div>
       </div>
       <div class="dest-card">
         <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=600&q=75" alt="Thailand" loading="lazy" />
-        <div class="dest-overlay">
-          <div>
-            <div class="dest-name">Koh Samui, Thailand</div>
-            <div class="dest-sub">From $420</div>
-          </div>
-        </div>
+        <div class="dest-overlay"><div><div class="dest-name">Koh Samui, Thailand</div><div class="dest-sub">From $420</div></div></div>
       </div>
       <div class="dest-card">
         <img src="https://images.unsplash.com/photo-1542259009477-d625272157b7?w=800&q=80" alt="Hawaii" loading="lazy" />
-        <div class="dest-overlay">
-          <div>
-            <div class="dest-name">Maui, Hawaii</div>
-            <div class="dest-sub">From $310</div>
-          </div>
-        </div>
+        <div class="dest-overlay"><div><div class="dest-name">Maui, Hawaii</div><div class="dest-sub">From $310</div></div></div>
       </div>
       <div class="dest-card">
         <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=600&q=75" alt="Costa Rica" loading="lazy" />
-        <div class="dest-overlay">
-          <div>
-            <div class="dest-name">Costa Rica</div>
-            <div class="dest-sub">From $290</div>
-          </div>
-        </div>
+        <div class="dest-overlay"><div><div class="dest-name">Costa Rica</div><div class="dest-sub">From $290</div></div></div>
       </div>
     </div>
   </div>
@@ -201,14 +509,13 @@
   <div class="pricing-inner">
     <div class="pricing-header reveal">
       <p class="section-label">Simple Pricing</p>
-      <h2 class="section-title">Travel more, <span class="grad">pay less</span></h2>
-      <p>No booking fees on top of your trip cost. Pay for what you actually use — nothing hidden.</p>
+      <h2 class="section-title">Start free. <span class="grad">Upgrade anytime.</span></h2>
+      <p class="section-sub">No booking fees on top of your trip. Pay for what you use — nothing hidden, cancel anytime.</p>
     </div>
 
-    <!-- Billing toggle -->
     <div class="billing-toggle reveal">
-      <button class="billing-btn active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
-      <button class="billing-btn" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $24</span></button>
+      <button class="billing-btn" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
+      <button class="billing-btn active" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $24</span></button>
     </div>
 
     <div class="pricing-grid reveal">
@@ -218,65 +525,63 @@
         <div class="price-amount"><span>$</span>0</div>
         <p class="price-cadence">Free forever</p>
         <ul class="price-features">
-          <li>1 solo trip</li>
+          <li>2 solo trips</li>
           <li>1 group trip (up to 5 members)</li>
-          <li>10 Compass AI messages/day</li>
+          <li>20 Compass AI messages/day</li>
           <li>Basic packing suggestions</li>
           <li>Standard booking search</li>
+          <li class="dim">Flight status alerts</li>
+          <li class="dim">SMS notifications</li>
+          <li class="dim">Unlimited trips</li>
         </ul>
-        <a href="https://app.venturli.ai" class="price-btn">Get Started Free</a>
+        <a href="https://app.venturli.ai" class="price-btn price-btn-outline">Get Started Free</a>
       </div>
 
       <!-- Pro -->
       <div class="price-card featured">
-        <div class="price-badge">Most Popular</div>
+        <div class="price-badge">🔥 Most Popular</div>
         <p class="price-tier">Pro</p>
-        <div class="price-amount" id="pro-price"><span>$</span>6.99</div>
-        <p class="price-cadence" id="pro-cadence">per month</p>
+        <div class="price-amount" id="pro-price"><span>$</span>4.99</div>
+        <p class="price-cadence" id="pro-cadence">per month · billed $59.99/yr</p>
+        <p class="price-trial" id="pro-trial">✦ 7-day free trial included</p>
         <ul class="price-features">
-          <li>Unlimited solo trips</li>
-          <li>Unlimited group trips</li>
+          <li>Unlimited solo & group trips</li>
           <li>Unlimited group members</li>
           <li>Unlimited Compass AI messages</li>
-          <li>AI packing suggestions</li>
-          <li>SMS notifications</li>
-          <li>Flight status alerts</li>
+          <li>AI-powered itinerary building</li>
+          <li>Real-time flight status alerts</li>
+          <li>SMS notifications & reminders</li>
+          <li>Smart packing suggestions</li>
           <li>Early access to new features</li>
           <li>Priority support</li>
         </ul>
-        <a href="https://app.venturli.ai" class="price-btn">Get Started</a>
+        <a href="https://app.venturli.ai" class="price-btn price-btn-primary" id="pro-cta">Start Free Trial →</a>
       </div>
     </div>
 
-    <p class="pricing-note">Secure payment via Stripe &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; No hidden fees</p>
+    <p class="pricing-note">🔒 Secure payment via Stripe &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; No charge until trial ends</p>
   </div>
 </section>
 
 <!-- EMAIL CAPTURE -->
 <section class="capture" id="early-access">
   <div class="capture-inner reveal">
-    <p class="section-label">Early Access</p>
+    <p class="section-label">Join the Community</p>
     <h2 class="section-title">Be the first to <span class="grad">explore</span></h2>
-    <p>Join the waitlist and get early access to Venturli, plus exclusive launch pricing when we go live.</p>
+    <p class="section-sub">Join thousands of travelers already using Venturli. Get updates on new features and destinations.</p>
     <div class="email-form" id="emailForm">
       <input type="email" class="email-input" placeholder="your@email.com" id="emailInput" />
-      <button class="email-submit" onclick="handleSubmit()">Join Waitlist</button>
+      <button class="email-submit" onclick="handleSubmit()">Join Free</button>
     </div>
     <p class="email-note">No spam. Unsubscribe anytime.</p>
     <div class="badges">
       <a href="#" class="badge">
         <span class="badge-icon">🍎</span>
-        <div class="badge-text">
-          <small>Download on the</small>
-          <strong>App Store</strong>
-        </div>
+        <div class="badge-text"><small>Download on the</small><strong>App Store</strong></div>
       </a>
       <a href="#" class="badge">
         <span class="badge-icon">▶</span>
-        <div class="badge-text">
-          <small>Get it on</small>
-          <strong>Google Play</strong>
-        </div>
+        <div class="badge-text"><small>Get it on</small><strong>Google Play</strong></div>
       </a>
     </div>
   </div>
@@ -296,7 +601,7 @@
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="https://app.venturli.ai">Open App</a>
-          <a href="#early-access">Early Access</a>
+          <a href="#early-access">Join Community</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -324,18 +629,26 @@
 </footer>
 
 <script>
-  // Billing toggle
+  const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
+
+  // Billing toggle — yearly default
   function setBilling(type) {
     const isYearly = type === 'yearly';
     document.getElementById('btn-monthly').classList.toggle('active', !isYearly);
     document.getElementById('btn-yearly').classList.toggle('active', isYearly);
-    document.getElementById('pro-price').innerHTML = isYearly ? '<span>$</span>59.99' : '<span>$</span>6.99';
-    document.getElementById('pro-cadence').textContent = isYearly ? 'per year · billed annually' : 'per month';
+    if (isYearly) {
+      document.getElementById('pro-price').innerHTML = '<span>$</span>4.99';
+      document.getElementById('pro-cadence').textContent = 'per month · billed $59.99/yr';
+      document.getElementById('pro-trial').style.display = 'block';
+      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
+    } else {
+      document.getElementById('pro-price').innerHTML = '<span>$</span>6.99';
+      document.getElementById('pro-cadence').textContent = 'per month';
+      document.getElementById('pro-trial').style.display = 'block';
+      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
+    }
   }
-
-  // Supabase config
-  const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
 
   // Sticky nav
   const nav = document.getElementById('nav');
@@ -347,31 +660,26 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Email form with Supabase insert
+  // Email form
   async function handleSubmit() {
     const input = document.getElementById('emailInput');
     const btn = document.querySelector('.email-submit');
     const email = input.value.trim();
-
-    // Basic validation
     if (!email || !email.includes('@') || !email.includes('.')) {
-      input.style.borderColor = 'var(--coral)';
+      input.style.borderColor = '#F97416';
       setTimeout(() => input.style.borderColor = '', 1500);
       return;
     }
-
-    // Loading state
     btn.textContent = 'Joining...';
     btn.disabled = true;
     input.disabled = true;
-
     try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
         method: 'POST',
@@ -383,33 +691,26 @@
         },
         body: JSON.stringify({ email })
       });
-
       if (res.ok) {
-        // Success
         document.getElementById('emailForm').innerHTML =
           '<p style="font-family:\'Syne\',sans-serif;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,#FAB321,#F97416,#F25E80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">You\'re on the list. See you out there. ✦</p>';
       } else {
         const err = await res.json();
-        // Handle duplicate email gracefully
         if (err.code === '23505') {
           document.getElementById('emailForm').innerHTML =
-            '<p style="font-family:\'Syne\',sans-serif;font-size:1rem;color:var(--text-muted);">You\'re already on the list. We\'ll be in touch! ✦</p>';
-        } else {
-          throw new Error('Insert failed');
-        }
+            '<p style="font-family:\'Syne\',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);">You\'re already on the list. We\'ll be in touch! ✦</p>';
+        } else throw new Error();
       }
-    } catch (e) {
-      btn.textContent = 'Join Waitlist';
+    } catch {
+      btn.textContent = 'Join Free';
       btn.disabled = false;
       input.disabled = false;
-      input.style.borderColor = 'var(--coral)';
+      input.style.borderColor = '#F97416';
       setTimeout(() => input.style.borderColor = '', 2000);
-      console.error('Waitlist error:', e);
     }
   }
 
-  // Allow Enter key to submit
-  document.getElementById('emailInput').addEventListener('keydown', (e) => {
+  document.getElementById('emailInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') handleSubmit();
   });
 </script>
