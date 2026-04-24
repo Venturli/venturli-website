@@ -302,7 +302,8 @@
 
     <div class="billing-toggle reveal">
       <button class="billing-btn" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
-      <button class="billing-btn active" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $24</span></button>
+      <button class="billing-btn active" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $20</span></button>
+
     </div>
 
     <div class="pricing-grid reveal">
@@ -328,8 +329,8 @@
       <div class="price-card featured">
         <div class="price-badge">🔥 Most Popular</div>
         <p class="price-tier">Pro</p>
-        <div class="price-amount" id="pro-price"><span>$</span>4.99</div>
-        <p class="price-cadence" id="pro-cadence">per month · billed $59.99/yr</p>
+        <div class="price-amount" id="pro-price"><span>$</span>9.99</div>
+        <p class="price-cadence" id="pro-cadence">per month · billed $99.99/yr</p>
         <p class="price-trial" id="pro-trial">✦ 7-day free trial included</p>
         <ul class="price-features">
           <li>Unlimited solo & group trips</li>
@@ -428,16 +429,16 @@
     document.getElementById('btn-monthly').classList.toggle('active', !isYearly);
     document.getElementById('btn-yearly').classList.toggle('active', isYearly);
     if (isYearly) {
-      document.getElementById('pro-price').innerHTML = '<span>$</span>4.99';
-      document.getElementById('pro-cadence').textContent = 'per month · billed $59.99/yr';
-      document.getElementById('pro-trial').style.display = 'block';
-      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
-    } else {
-      document.getElementById('pro-price').innerHTML = '<span>$</span>6.99';
-      document.getElementById('pro-cadence').textContent = 'per month';
-      document.getElementById('pro-trial').style.display = 'block';
-      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
-    }
+        document.getElementById('pro-price').innerHTML = '<span>$</span>8.33';
+        document.getElementById('pro-cadence').textContent = 'per month · billed $99.99/yr';
+        document.getElementById('pro-trial').style.display = 'block';
+        document.getElementById('pro-cta').textContent = 'Start Free Trial →';
+      } else {
+        document.getElementById('pro-price').innerHTML = '<span>$</span>9.99';
+        document.getElementById('pro-cadence').textContent = 'per month';
+        document.getElementById('pro-trial').style.display = 'block';
+        document.getElementById('pro-cta').textContent = 'Start Free Trial →';
+      }
   }
 
   // Sticky nav
