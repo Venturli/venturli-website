@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ── Primary Meta ── -->
+  <title>Venturli — AI-Powered Travel Planning App</title>
   <meta name="description" content="Plan trips, book flights and hotels, coordinate group travel, and split costs — all in one intelligent travel app. Powered by AI. Free to start." />
   <meta name="keywords" content="travel planning app, group travel, flight booking, hotel booking, AI travel assistant, trip planner, cost splitting, travel app" />
   <meta name="author" content="Venturli" />
@@ -98,7 +99,6 @@
     <a href="#features">Features</a>
     <a href="#how">How It Works</a>
     <a href="#ambassador">Earn</a>
-    <a href="#pricing">Pricing</a>
     <a href="https://app.venturli.ai" class="nav-cta">Open App →</a>
   </div>
 </nav>
@@ -142,7 +142,6 @@
   </div>
 
   <div class="hero-content">
-    <div class="hero-badge">AI-Powered Travel Planning</div>
     <h1 class="hero-title">
       Plan Together.<br><span class="grad">Travel Better.</span>
     </h1>
@@ -372,66 +371,7 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="pricing-inner">
-    <div class="pricing-header reveal">
-      <p class="section-label">Simple Pricing</p>
-      <h2 class="section-title">Start free. <span class="grad">Upgrade anytime.</span></h2>
-      <p class="section-sub">No booking fees on top of your trip. Pay for what you use — nothing hidden, cancel anytime.</p>
-    </div>
 
-    <div class="billing-toggle reveal">
-      <button class="billing-btn" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
-      <button class="billing-btn active" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save $20</span></button>
-    </div>
-
-    <div class="pricing-grid reveal">
-      <!-- Free -->
-      <div class="price-card">
-        <p class="price-tier">Free</p>
-        <div class="price-amount"><span>$</span>0</div>
-        <p class="price-cadence">Free forever</p>
-        <ul class="price-features">
-          <li>2 solo trips</li>
-          <li>1 group trip (up to 5 members)</li>
-          <li>20 Compass AI messages/day</li>
-          <li>Basic packing suggestions</li>
-          <li>Standard booking search</li>
-          <li class="dim">Flight status alerts</li>
-          <li class="dim">SMS notifications</li>
-          <li class="dim">Unlimited trips</li>
-        </ul>
-        <a href="https://app.venturli.ai" class="price-btn price-btn-outline">Get Started Free</a>
-      </div>
-
-      <!-- Pro -->
-      <div class="price-card featured">
-        <div class="price-badge">🔥 Most Popular</div>
-        <p class="price-tier">Pro</p>
-        <div class="price-amount" id="pro-price"><span>$</span>8.33</div>
-        <p class="price-cadence" id="pro-cadence">per month · billed $99.99/yr</p>
-        <p class="price-trial" id="pro-trial">✦ 7-day free trial included</p>
-        <ul class="price-features">
-          <li>Unlimited solo & group trips</li>
-          <li>Unlimited group members</li>
-          <li>Unlimited Compass AI messages</li>
-          <li>AI-powered itinerary building</li>
-          <li>Real-time flight status alerts</li>
-          <li>SMS notifications & reminders</li>
-          <li>Smart packing suggestions</li>
-          <li>Ambassador Program access</li>
-          <li>Earn 2% on referral bookings</li>
-          <li>Early access to new features</li>
-          <li>Priority support</li>
-        </ul>
-        <a href="https://app.venturli.ai" class="price-btn price-btn-primary" id="pro-cta">Start Free Trial →</a>
-      </div>
-    </div>
-
-    <p class="pricing-note">🔒 Secure payment via Stripe &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; No charge until trial ends</p>
-  </div>
-</section>
 
 <!-- EMAIL CAPTURE -->
 <section class="capture" id="early-access">
@@ -470,7 +410,6 @@
           <h4>Product</h4>
           <a href="#features">Features</a>
           <a href="#ambassador">Ambassador Program</a>
-          <a href="#pricing">Pricing</a>
           <a href="https://app.venturli.ai">Open App</a>
           <a href="#early-access">Join Community</a>
         </div>
@@ -512,24 +451,6 @@
 <script>
   const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
-
-  // Billing toggle — yearly default
-  function setBilling(type) {
-    const isYearly = type === 'yearly';
-    document.getElementById('btn-monthly').classList.toggle('active', !isYearly);
-    document.getElementById('btn-yearly').classList.toggle('active', isYearly);
-    if (isYearly) {
-      document.getElementById('pro-price').innerHTML = '<span>$</span>8.33';
-      document.getElementById('pro-cadence').textContent = 'per month · billed $99.99/yr';
-      document.getElementById('pro-trial').style.display = 'block';
-      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
-    } else {
-      document.getElementById('pro-price').innerHTML = '<span>$</span>9.99';
-      document.getElementById('pro-cadence').textContent = 'per month';
-      document.getElementById('pro-trial').style.display = 'block';
-      document.getElementById('pro-cta').textContent = 'Start Free Trial →';
-    }
-  }
 
   // Sticky nav
   const nav = document.getElementById('nav');
