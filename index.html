@@ -453,9 +453,6 @@
 </footer>
 
 <script>
-  const SUPABASE_URL = 'https://sxfqnpvmczzoherywekb.supabase.co';
-  const SUPABASE_KEY = 'sb_publishable_sFfcKtSK0hHvZmGjMX2b3A_LExBZsUf';
-
   // Sticky nav
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -487,14 +484,9 @@
     btn.disabled = true;
     input.disabled = true;
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+      const res = await fetch('/api/waitlist', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Prefer': 'return=minimal'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       });
       if (res.ok) {
@@ -502,7 +494,7 @@
           '<p style="font-family:\'Syne\',sans-serif;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,#FAB321,#F97416,#F25E80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">You\'re on the list. See you out there. ✦</p>';
       } else {
         const err = await res.json();
-        if (err.code === '23505') {
+        if (err.error === 'duplicate') {
           document.getElementById('emailForm').innerHTML =
             '<p style="font-family:\'Syne\',sans-serif;font-size:1rem;color:rgba(255,255,255,0.5);">You\'re already on the list. We\'ll be in touch! ✦</p>';
         } else throw new Error();
