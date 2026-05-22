@@ -1,0 +1,148 @@
+/* ── LEGAL PAGES — aligned to styles.css design system ── */
+
+.legal-hero {
+  padding: 10rem 5% 5rem;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  position: relative;
+  overflow: hidden;
+}
+.legal-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(43,90,251,0.08) 0%, transparent 60%);
+}
+.legal-hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.legal-hero-inner .section-label {
+  margin-bottom: 0.75rem;
+}
+.legal-hero-inner h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.legal-meta {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+}
+
+/* ── Privacy hero accent (orange side) ── */
+.legal-hero.privacy-hero::before {
+  background: radial-gradient(ellipse at 20% 50%, rgba(249,116,22,0.08) 0%, transparent 60%);
+}
+
+/* ── Body ── */
+.legal-body {
+  padding: 5rem 5% 7rem;
+  background: var(--navy);
+}
+.legal-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.legal-inner h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 3rem 0 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: #fff;
+}
+.legal-inner h2:first-child { margin-top: 0; }
+
+.legal-inner p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.legal-inner strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+.legal-inner ul {
+  list-style: none;
+  margin: 0.5rem 0 1.2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.legal-inner ul li {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  font-weight: 300;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+/* Terms bullets — blue */
+.legal-inner ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+/* Privacy bullets — coral */
+.privacy-bullets ul li::before {
+  background: var(--coral);
+}
+
+.legal-inner a {
+  color: var(--coral);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.legal-inner a:hover { opacity: 0.75; }
+
+/* ── Highlight box ── */
+.legal-inner .highlight-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+}
+.legal-inner .highlight-box p {
+  margin: 0;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Terms highlight — blue tint */
+.highlight-box.blue-tint {
+  background: rgba(43,90,251,0.06);
+  border-color: rgba(43,90,251,0.18);
+}
+
+/* Privacy highlight — coral tint */
+.highlight-box.coral-tint {
+  background: rgba(249,116,22,0.06);
+  border-color: rgba(249,116,22,0.18);
+}
+
+@media (max-width: 768px) {
+  .legal-hero { padding: 8rem 5% 4rem; }
+  .legal-body  { padding: 3.5rem 5% 5rem; }
+}

@@ -9,74 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .legal-hero {
-      padding: 10rem 2.5rem 5rem;
-      background: var(--deep);
-      border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .legal-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 80% 50%, rgba(43,90,251,0.08) 0%, transparent 60%);
-    }
-    .legal-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
-    .legal-hero-inner .section-label { margin-bottom: 0.75rem; }
-    .legal-hero-inner h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem;
-    }
-    .legal-meta { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
-
-    .legal-body { padding: 5rem 2.5rem 7rem; }
-    .legal-inner { max-width: 760px; margin: 0 auto; }
-
-    .legal-inner h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem; font-weight: 700;
-      letter-spacing: -0.01em; margin: 3rem 0 1rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .legal-inner h2:first-child { margin-top: 0; }
-    .legal-inner p {
-      color: var(--text-soft); font-size: 0.95rem;
-      line-height: 1.85; font-weight: 300; margin-bottom: 1rem;
-    }
-    .legal-inner ul {
-      list-style: none; margin: 0.5rem 0 1.2rem; padding: 0;
-      display: flex; flex-direction: column; gap: 0.6rem;
-    }
-    .legal-inner ul li {
-      color: var(--text-soft); font-size: 0.95rem;
-      line-height: 1.75; font-weight: 300;
-      padding-left: 1.4rem; position: relative;
-    }
-    .legal-inner ul li::before {
-      content: '';
-      position: absolute; left: 0; top: 0.6rem;
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--blue);
-    }
-    .legal-inner a {
-      color: var(--orange); text-decoration: none; transition: opacity 0.2s;
-    }
-    .legal-inner a:hover { opacity: 0.8; }
-    .legal-inner .highlight-box {
-      background: rgba(43,90,251,0.06);
-      border: 1px solid rgba(43,90,251,0.15);
-      border-radius: var(--radius-md);
-      padding: 1.5rem 1.8rem; margin: 1.5rem 0;
-    }
-    .legal-inner .highlight-box p { margin: 0; }
-
-    @media (max-width: 768px) {
-      .legal-hero { padding: 8rem 1.25rem 4rem; }
-      .legal-body { padding: 3.5rem 1.25rem 5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="legal-style.css" />
 </head>
 <body>
 
@@ -95,7 +28,7 @@
   <div class="legal-hero-inner">
     <p class="section-label">Legal</p>
     <h1>Terms of Service</h1>
-    <p class="legal-meta">Last updated: April 18, 2026 &nbsp;·&nbsp; Effective: April 18, 2026</p>
+    <p class="legal-meta">Last updated: May 21, 2026 &nbsp;·&nbsp; Effective: May 21, 2026</p>
   </div>
 </div>
 
@@ -103,7 +36,7 @@
 <div class="legal-body">
   <div class="legal-inner">
 
-    <div class="highlight-box">
+    <div class="highlight-box blue-tint">
       <p>Please read these terms carefully before using Venturli. By accessing or using the platform, you agree to be bound by these terms. If you do not agree, do not use the platform.</p>
     </div>
 
@@ -126,13 +59,17 @@
     <p>We reserve the right to suspend or terminate accounts that violate these Terms or are inactive for extended periods.</p>
 
     <h2>4. Bookings and Payments</h2>
-    <p>When you make a booking through Venturli, you enter into a contract with the relevant travel provider (airline, hotel, car rental company), not with Venturli. We facilitate the transaction on your behalf.</p>
+    <p>When you make a booking through Venturli, you enter into a contract with the relevant travel provider (airline, hotel, car rental company), not with Venturli. We facilitate the transaction on your behalf using LiteAPI as our booking infrastructure for both flights and hotels.</p>
     <ul>
       <li>All prices are displayed in USD and are subject to availability at the time of booking</li>
       <li>Payments are processed securely by Stripe in accordance with their terms of service</li>
-      <li>Booking confirmations are subject to the cancellation and refund policies of the individual travel provider</li>
-      <li>Venturli is not responsible for changes, cancellations, or disruptions caused by travel providers</li>
       <li>You are responsible for ensuring all traveler information provided is accurate</li>
+    </ul>
+    <p><strong>Hotel cancellations and refunds:</strong> Hotel cancellation and refund eligibility is determined by the individual rate's cancellation policy, not by Venturli. Before confirming a hotel booking, you will be shown whether the rate is refundable or non-refundable, along with any applicable cancellation deadlines and penalty amounts. Cancelling after a deadline may result in a partial or zero refund depending on the hotel's policy.</p>
+    <p><strong>Flight cancellations and refunds:</strong> Flight cancellation, change, and refund terms are fare-specific and are provided at the time you verify an offer before checkout. Fare conditions can change between search and booking — always review the terms shown at checkout, not at initial search. Venturli is not responsible for fare rule changes that occur between search and purchase.</p>
+    <ul>
+      <li>Venturli is not responsible for changes, cancellations, or disruptions initiated by travel providers. Where a refund is owed under a provider's policy, it will be processed according to that provider's timeline.</li>
+      <li>If a payment is successfully captured but a booking cannot be completed, Venturli will initiate a refund through the original payment method. Processing times are subject to your card issuer's policies.</li>
     </ul>
     <p>For group trips, the organizer is responsible for collecting and remitting payments from group members. Venturli's cost-splitting feature is a coordination tool and does not guarantee payment from any individual.</p>
 
