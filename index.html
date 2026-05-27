@@ -91,6 +91,36 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── App store badges ── */
+    .store-badge-link {
+      display: inline-flex;
+      align-items: center;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .store-badge-link:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+    .store-badge {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+    /* Google badge image has built-in padding — compensate so it visually matches Apple */
+    .store-badge-google {
+      height: 64px;
+      margin: -10px 0;
+    }
+    /* Also update the .badges container for image-based badges */
+    .badges {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 </head>
 <body>
@@ -123,7 +153,7 @@
       <div>
         <div class="float-title">Maldives</div>
         <div class="float-sub">From $890 · 2 seats left</div>
-        <div class="float-tag float-tag-amber">✈ Duffel · Live fare</div>
+        <div class="float-tag float-tag-amber">✈ LiteAPI · Live fare</div>
       </div>
     </div>
   </div>
@@ -177,7 +207,7 @@
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-flights.png" alt="Flights" /></div>
         <h3 class="feature-name">Flight Search & Booking</h3>
-        <p class="feature-desc">Search real-time fares, compare routes, and book directly. Powered by Duffel for live inventory and instant confirmation.</p>
+        <p class="feature-desc">Search real-time fares, compare routes, and book directly. Powered by LiteAPI for live inventory and instant confirmation.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon"><img src="icons/icon-hotels.png" alt="Hotels" /></div>
@@ -388,13 +418,15 @@
     </div>
     <p class="email-note">No spam. Unsubscribe anytime.</p>
     <div class="badges">
-      <a href="#" class="badge">
-        <span class="badge-icon">🍎</span>
-        <div class="badge-text"><small>Download on the</small><strong>App Store</strong></div>
+      <a href="https://apps.apple.com/us/app/venturli/id6746761539" target="_blank" rel="noopener noreferrer" class="store-badge-link">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+             alt="Download on the App Store"
+             class="store-badge" />
       </a>
-      <a href="#" class="badge">
-        <span class="badge-icon">▶</span>
-        <div class="badge-text"><small>Get it on</small><strong>Google Play</strong></div>
+      <a href="https://play.google.com/store/apps/details?id=ai.venturli.app" target="_blank" rel="noopener noreferrer" class="store-badge-link">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+             alt="Get it on Google Play"
+             class="store-badge store-badge-google" />
       </a>
     </div>
   </div>
